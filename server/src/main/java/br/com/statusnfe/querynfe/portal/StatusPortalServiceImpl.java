@@ -2,6 +2,7 @@ package br.com.statusnfe.querynfe.portal;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import br.com.statusnfe.querynfe.status.StatusEnum;
 import br.com.statusnfe.querynfe.status.StatusNfeModel;
 import br.com.statusnfe.querynfe.status.StatusService;
 import br.com.statusnfe.querynfe.utils.Utils;
+
+import java.util.Date;
 
 @Service
 public class StatusPortalServiceImpl implements StatusPortalService {
@@ -71,6 +74,7 @@ public class StatusPortalServiceImpl implements StatusPortalService {
 
             StatusNfe statusNfe = StatusNfe.builder()
                     .estado(estado)
+                    .dataStatus(new Date())
                     .isContigencia(isContigencia)
                     .StatusServico4(statusNfeModel.getStatusServico4())
                     .Autorizacao4(statusNfeModel.getAutorizacao4())

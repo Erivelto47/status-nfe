@@ -1,6 +1,7 @@
 package br.com.statusnfe.querynfe.schedule;
 
 import feign.FeignException;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import br.com.statusnfe.querynfe.portal.StatusPortal;
 import br.com.statusnfe.querynfe.portal.StatusPortalService;
 
 @Service
+@Log
 public class StatusPortalJob {
 
     @Autowired

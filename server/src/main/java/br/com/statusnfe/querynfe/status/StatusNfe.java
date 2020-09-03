@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Builder
@@ -21,6 +22,9 @@ public class StatusNfe {
 
     @OneToOne
     private Estado estado;
+
+    @Column(name = "data_status")
+    private Date dataStatus;
 
     @Column(name = "contingencia")
     private Boolean isContigencia;
