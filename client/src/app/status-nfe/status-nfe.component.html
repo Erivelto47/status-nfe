@@ -1,0 +1,17 @@
+<p-table>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let col of cols">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body">
+    <tr *ngFor="let services of servicesStatus$">
+      <td>
+        {{services.recepcaoEvento4}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
