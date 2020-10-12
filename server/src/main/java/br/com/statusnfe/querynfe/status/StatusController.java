@@ -24,7 +24,7 @@ public class StatusController extends CrudController<StatusNfe, Long> {
     }
 
     @GetMapping("/last")
-    public List<String> findAllB() {
+    public List<StatusNfeModel> findAllB() {
         return statusService.findAllB();
     }
 

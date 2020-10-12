@@ -6,7 +6,8 @@ import java.util.List;
 public enum StatusEnum {
     VERMELHO("inativo", "<td><img src=\"imagens/bola_vermelho_P.png\"></td>"),
     AMARELO("aguardando", "<td><img src=\"imagens/bola_amarela_P.png\"></td>"),
-    VERDE("ativo", "<td><img src=\"imagens/bola_verde_P.png\"></td>");
+    VERDE("ativo", "<td><img src=\"imagens/bola_verde_P.png\"></td>"),
+    INDISPONIVEL("indisponivel");
 
     private final List<String> status;
 

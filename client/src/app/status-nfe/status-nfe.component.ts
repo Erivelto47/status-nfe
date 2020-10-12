@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class StatusNfeComponent implements OnInit {
 
-  servicesStatus$: StatusNfe[];
+  servicesStatus$: Observable<StatusNfe[]>;
 
   cols: any[];
 
@@ -29,8 +29,6 @@ export class StatusNfeComponent implements OnInit {
       { field: 'consultaCadastro4', header: 'Consulta Cadastro' },
       { field: 'recepcaoEvento4', header: 'Recepcao Evento' },
     ];
-
-    this.statusService.findStatusByState().subscribe(resulresult => this.servicesStatus$ = resulresult);
-    console.log(this.servicesStatus$);
+    this.servicesStatus$ = this.statusService.findStatusByState();
   }
 }
