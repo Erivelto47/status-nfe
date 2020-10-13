@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {StatusNfeService} from './status-nfe.service';
 import {StatusNfe} from './StatusNfe';
 import {Observable} from 'rxjs';
@@ -13,6 +13,8 @@ export class StatusNfeComponent implements OnInit {
   servicesStatus$: Observable<StatusNfe[]>;
 
   cols: any[];
+
+  interval: any;
 
   constructor(private statusService: StatusNfeService) {
   }
@@ -29,6 +31,18 @@ export class StatusNfeComponent implements OnInit {
       { field: 'consultaCadastro4', header: 'Consulta Cadastro' },
       { field: 'recepcaoEvento4', header: 'Recepcao Evento' },
     ];
+    this.getServicesLastStatus();
+
+    /**
+     * Call the service method in interval of 5 minutes
+     */
+    this.interval = setInterval(() => {
+      this.getServicesLastStatus();
+    }, 60000);
+  }
+
+  getServicesLastStatus(): void {
     this.servicesStatus$ = this.statusService.findStatusByState();
   }
+
 }

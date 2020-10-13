@@ -21,7 +21,7 @@ public class StatusPortalJob {
     @Autowired
     private StatusPortal statusPortal;
 
-    @Scheduled(cron = "0 0/1 * 1/1 * ?")
+    @Scheduled(cron = "0 0/5 * 1/1 * ?")
     public void validateSomething() {
         System.out.println("Execute Job start.");
 

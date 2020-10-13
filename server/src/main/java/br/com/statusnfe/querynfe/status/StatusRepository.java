@@ -13,17 +13,22 @@ public interface StatusRepository extends JpaRepository<StatusNfe, Long> {
     /**
      *  3- Retornar por rest os status atual dos serviços por estado.
      */
-    @Query(value = "select estado.sigla, " +
-            "status_nfe.autorizacao_4, " +
-            "status_nfe.retorno_autorizacao_4, " +
-            "status_nfe.inutilizacao_4,  " +
-            "status_nfe.consulta_protocolo_4, " +
-            "status_nfe.status_servico_4, " +
-            "status_nfe.tempo_medio, " +
-            "status_nfe.consulta_cadastro_4, " +
-            "status_nfe.recepcao_evento_4 " +
-            "from estado join status_nfe where status_nfe.contingencia=false " +
-            "group by estado.sigla, status_nfe.autorizacao_4, status_nfe.retorno_autorizacao_4, status_nfe.inutilizacao_4, status_nfe.consulta_protocolo_4, status_nfe.status_servico_4, status_nfe.tempo_medio, status_nfe.consulta_cadastro_4, status_nfe.recepcao_evento_4", nativeQuery = true)
+    @Query(value = "select e.sigla, " +
+            "nfe.autorizacao_4, " +
+            "nfe.retorno_autorizacao_4, " +
+            "nfe.inutilizacao_4,  " +
+            "nfe.consulta_protocolo_4, " +
+            "nfe.status_servico_4, " +
+            "nfe.tempo_medio, " +
+            "nfe.consulta_cadastro_4, " +
+            "nfe.recepcao_evento_4 " +
+            "from status_nfe nfe " +
+            "join estado e on e.id = nfe.estado_id " +
+            "where nfe.id in (select max(snfe.id) " +
+            "                 from status_nfe snfe " +
+            "                 where snfe.contingencia=false " +
+            "                 group by snfe.estado_id) " +
+            "group by e.sigla", nativeQuery = true)
     List<String> findAllByEstadoAndIsContigenciaIsFalse();
 
     /**
